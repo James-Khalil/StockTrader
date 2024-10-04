@@ -1,0 +1,81 @@
+    Public Sub Main(a_sCmdArgs() As String)
+        Application.EnableVisualStyles()
+
+        If (a_sCmdArgs.Length > 0) Then
+            Dim a_sArgs() As String
+            Dim sArg1 As String = UCase(a_sCmdArgs(0))
+
+            If (sArg1 = "/CONNECT" And a_sCmdArgs.Length > 1) Then
+            Else
+            End If
+
+            If (a_sArgs.Length > 0) Then
+                RunBatch(a_sArgs)
+            Else
+                RunBotTrader()
+            End If
+        Else
+            RunBotTrader()
+        End If
+    End Sub
+
+    Private Sub RunBotTrader()
+        Dim oDistributedUtil As New clsDistributedUtil
+        Dim oDataLoad As New DB.clsDataLoad
+        Dim oFSO As New clsFSO
+        Dim oTimerCallBack As TimerCallback = AddressOf CheckKillFlag
+
+        'g_oSplashForm.Show()
+        Application.DoEvents()
+        DB.DBConn() 'create connection to database
+        oDataLoad.LoadLookup()
+        g_frmMain = New frmMain
+        g_oSplashForm.Owner = g_frmMain
+        Application.Run(g_frmMain)
+        DB.DBDisConn()
+    End Sub
+
+
+    Private Sub RunBatch(a_sCmdArgs As String())
+        Dim oDataLoad As New DB.clsDataLoad
+        Dim oApp As New DB.clsApp
+        Dim sArg1 As String = UCase(a_sCmdArgs(0))
+        Dim oEmail As New Reports.Email.clsEmail
+
+        Try
+            DB.DBConn()
+            oDataLoad.LoadLookup()
+            RunBatchProcess(a_sCmdArgs)
+            DB.DBDisConn()
+        Catch ex As Exception
+            'LogEvent(ex.ToString, EventLogEntryType.Error)
+            'oEmail.SendOutcome("Process Start Exception", False, ex.ToString, False, False, False)
+        End Try
+
+    End Sub
+
+    Public Sub RunBatchProcess(a_sCmdArgs As String())
+        Dim oDistributedUtil As New clsDistributedUtil
+        Dim oJob As New Jobs.clsJob
+        Dim oTask As New Jobs.clsTask
+        Dim sArg1 As String = UCase(a_sCmdArgs(0))
+        Dim sArg2 As String = If(a_sCmdArgs.Length > 1, UCase(a_sCmdArgs(1)), "")
+        Dim sArg3 As String = If(a_sCmdArgs.Length > 2, UCase(a_sCmdArgs(2)), "")
+
+        If (sArg1 = "/RUN_SERVICE") Then
+            'Dim oRunService() As System.ServiceProcess.ServiceBase
+            'oRunService = New System.ServiceProcess.ServiceBase() {New RunARPSJobMgr}
+            'System.ServiceProcess.ServiceBase.Run(oRunService)
+        ElseIf (sArg1 = "/RUN_SERVICE_DEBUG") Then
+            'Dim oJobMgr As New RunARPSJobMgr
+            'oJobMgr.StartJobMgr()
+        ElseIf (sArg1 = "/RUN_TASK") Then
+            'g_eARPSRunModeID = CInt(sArg3)
+            'oTask.RunTask(CInt(sArg2))
+        ElseIf (sArg1 = "/RUN_JOB") Then
+            'g_eARPSRunModeID = CInt(sArg3)
+            'oJob.RunJob(CInt(sArg2))
+        ElseIf (sArg1 = "/OPEN") Then
+            'OpenProgram(sArg2, sArg3)
+        End If
+    End Sub

@@ -1,0 +1,829 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9E05A586-B51E-40F2-8663-04DCEABEE053}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Sub Main</StartupObject>
+    <RootNamespace>Bottrader</RootNamespace>
+    <AssemblyName>Bottrader</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Bottrader.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Bottrader.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\Icons\Weights.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Alpaca.Markets, Version=6.1.12.0, Culture=neutral, PublicKeyToken=16fb7a27ac3b9689, processorArchitecture=MSIL">
+      <HintPath>packages\Alpaca.Markets.6.1.12\lib\net462\Alpaca.Markets.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Polly, Version=7.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
+      <HintPath>packages\Polly.7.2.3\lib\net472\Polly.dll</HintPath>
+    </Reference>
+    <Reference Include="Portable.System.DateTimeOnly, Version=7.0.1.0, Culture=neutral, PublicKeyToken=16fb7a27ac3b9689, processorArchitecture=MSIL">
+      <HintPath>packages\Portable.System.DateTimeOnly.7.0.1\lib\net462\Portable.System.DateTimeOnly.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Pipelines, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.Pipelines.7.0.0\lib\net462\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WinHttpHandler, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Net.Http.WinHttpHandler.7.0.0\lib\net462\System.Net.Http.WinHttpHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Data.SqlClient" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DB\clsFearGreed.vb" />
+    <Compile Include="Reports\clsReports.vb" />
+    <Compile Include="RestAPI\clsFMP.vb" />
+    <Compile Include="RestAPI\clsFMPStruct.vb" />
+    <Compile Include="TechInd\clsAssetScore.vb" />
+    <Compile Include="TechInd\clsTechInd.vb" />
+    <Compile Include="Controls\clsCombo.vb" />
+    <Compile Include="Controls\clsListView.vb" />
+    <Compile Include="DB\clsAsset.vb" />
+    <Compile Include="DB\clsJob.vb" />
+    <Compile Include="DB\clsSchedule.vb" />
+    <Compile Include="Forms\frmAlgoSettings.Designer.vb">
+      <DependentUpon>frmAlgoSettings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAlgoSettings.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmJobManager.Designer.vb">
+      <DependentUpon>frmJobManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmJobManager.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Global\modSecurity.vb" />
+    <Compile Include="Job\clsAlgoTrade.vb" />
+    <Compile Include="Job\clsAsset.vb" />
+    <Compile Include="RestAPI\clsAlpaca.vb" />
+    <Compile Include="RestAPI\clsFearGreed.vb" />
+    <Compile Include="Forms\frmJobSchedule.Designer.vb">
+      <DependentUpon>frmJobSchedule.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmJobSchedule.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\clsEmail.vb" />
+    <Compile Include="DB\clsDataLoad.vb" />
+    <Compile Include="DB\clsLookup.vb" />
+    <Compile Include="DB\clsUser.vb" />
+    <Compile Include="frmSplash.Designer.vb">
+      <DependentUpon>frmSplash.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSplash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DB\modDB.vb" />
+    <Compile Include="frmMain.Designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Global\modConst.vb" />
+    <Compile Include="Global\modMain.vb" />
+    <Compile Include="Global\modStruct.vb" />
+    <Compile Include="Global\modUtil.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Job\clsJob.vb" />
+    <Compile Include="Service\clsService.vb" />
+    <Compile Include="Service\svcManager.Designer.vb">
+      <DependentUpon>svcManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Service\svcManager.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucBacktesting.Designer.vb">
+      <DependentUpon>ucBacktesting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucBacktesting.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\frmOrder.Designer.vb">
+      <DependentUpon>frmOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucAccount.Designer.vb">
+      <DependentUpon>ucAccount.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucAccount.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucOrderLog.Designer.vb">
+      <DependentUpon>ucOrderLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucOrderLog.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucPositions.Designer.vb">
+      <DependentUpon>ucPositions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucPositions.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddSchedule.Designer.vb">
+      <DependentUpon>frmAddSchedule.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddSchedule.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucStocks.Designer.vb">
+      <DependentUpon>ucStocks.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucStocks.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\frmAlgoSettings.resx">
+      <DependentUpon>frmAlgoSettings.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmJobManager.resx">
+      <DependentUpon>frmJobManager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSplash.resx">
+      <DependentUpon>frmSplash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmJobSchedule.resx">
+      <DependentUpon>frmJobSchedule.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucBacktesting.resx">
+      <DependentUpon>ucBacktesting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmOrder.resx">
+      <DependentUpon>frmOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucAccount.resx">
+      <DependentUpon>ucAccount.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucOrderLog.resx">
+      <DependentUpon>ucOrderLog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucPositions.resx">
+      <DependentUpon>ucPositions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddSchedule.resx">
+      <DependentUpon>frmAddSchedule.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucStocks.resx">
+      <DependentUpon>ucStocks.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\ARPS.ico" />
+    <Content Include="Images\Cursors\Zoom.cur" />
+    <Content Include="Images\Flags\afghanistan.png" />
+    <Content Include="Images\Flags\albania.png" />
+    <Content Include="Images\Flags\algeria.png" />
+    <Content Include="Images\Flags\american_samoa.png" />
+    <Content Include="Images\Flags\andorra.png" />
+    <Content Include="Images\Flags\angola.png" />
+    <Content Include="Images\Flags\anguilla.png" />
+    <Content Include="Images\Flags\antiguabarbuda.png" />
+    <Content Include="Images\Flags\argentina.png" />
+    <Content Include="Images\Flags\armenia.png" />
+    <Content Include="Images\Flags\aruba.png" />
+    <Content Include="Images\Flags\australia.png" />
+    <Content Include="Images\Flags\austria.png" />
+    <Content Include="Images\Flags\azerbaijan.png" />
+    <Content Include="Images\Flags\bahamas.png" />
+    <Content Include="Images\Flags\bahrain.png" />
+    <Content Include="Images\Flags\bangladesh.png" />
+    <Content Include="Images\Flags\barbados.png" />
+    <Content Include="Images\Flags\belarus.png" />
+    <Content Include="Images\Flags\belgium.png" />
+    <Content Include="Images\Flags\belize.png" />
+    <Content Include="Images\Flags\benin.png" />
+    <Content Include="Images\Flags\bermuda.png" />
+    <Content Include="Images\Flags\bhutan.png" />
+    <Content Include="Images\Flags\BlankFlag.PNG" />
+    <Content Include="Images\Flags\bolivia.png" />
+    <Content Include="Images\Flags\bonaire.png" />
+    <Content Include="Images\Flags\bosnia_herzegovina.png" />
+    <Content Include="Images\Flags\botswana.png" />
+    <Content Include="Images\Flags\bouvet_island.png" />
+    <Content Include="Images\Flags\brazil.png" />
+    <Content Include="Images\Flags\british_indian_ocean_terr.png" />
+    <Content Include="Images\Flags\brunei.png" />
+    <Content Include="Images\Flags\bulgaria.png" />
+    <Content Include="Images\Flags\burkina.png" />
+    <Content Include="Images\Flags\burundi.png" />
+    <Content Include="Images\Flags\cambodia.png" />
+    <Content Include="Images\Flags\cameroon.png" />
+    <Content Include="Images\Flags\canada.png" />
+    <Content Include="Images\Flags\cape_verde.png" />
+    <Content Include="Images\Flags\cayman_island.png" />
+    <Content Include="Images\Flags\centralafricanrep.png" />
+    <Content Include="Images\Flags\chad.png" />
+    <Content Include="Images\Flags\chile.png" />
+    <Content Include="Images\Flags\china.png" />
+    <Content Include="Images\Flags\colombia.png" />
+    <Content Include="Images\Flags\comoros.png" />
+    <Content Include="Images\Flags\congo.png" />
+    <Content Include="Images\Flags\cook_island.png" />
+    <Content Include="Images\Flags\costarica.png" />
+    <Content Include="Images\Flags\croatia.png" />
+    <Content Include="Images\Flags\cuba.png" />
+    <Content Include="Images\Flags\Curacao.png" />
+    <Content Include="Images\Flags\cyprus.png" />
+    <Content Include="Images\Flags\czechrepublic.png" />
+    <Content Include="Images\Flags\demrepcongo.png" />
+    <Content Include="Images\Flags\denmark.png" />
+    <Content Include="Images\Flags\djibouti.png" />
+    <Content Include="Images\Flags\dominica.png" />
+    <Content Include="Images\Flags\dominicanrep.png" />
+    <Content Include="Images\Flags\ecuador.png" />
+    <Content Include="Images\Flags\egypt.png" />
+    <Content Include="Images\Flags\elsalvador.png" />
+    <Content Include="Images\Flags\eq_guinea.png" />
+    <Content Include="Images\Flags\eritrea.png" />
+    <Content Include="Images\Flags\estonia.png" />
+    <Content Include="Images\Flags\ethiopia.png" />
+    <Content Include="Images\Flags\falkland_islands.png" />
+    <Content Include="Images\Flags\faroe_islands.png" />
+    <Content Include="Images\Flags\fiji.png" />
+    <Content Include="Images\Flags\finland.png" />
+    <Content Include="Images\Flags\france.png" />
+    <Content Include="Images\Flags\french_polynesia.png" />
+    <Content Include="Images\Flags\french_southern_terr.png" />
+    <Content Include="Images\Flags\gabon.png" />
+    <Content Include="Images\Flags\gambia.png" />
+    <Content Include="Images\Flags\georgia.png" />
+    <Content Include="Images\Flags\germany.png" />
+    <Content Include="Images\Flags\ghana.png" />
+    <Content Include="Images\Flags\gibraltar.png" />
+    <Content Include="Images\Flags\greece.png" />
+    <Content Include="Images\Flags\greenland.png" />
+    <Content Include="Images\Flags\grenada.png" />
+    <Content Include="Images\Flags\grenadines.png" />
+    <Content Include="Images\Flags\guadeloupe.png" />
+    <Content Include="Images\Flags\guam.png" />
+    <Content Include="Images\Flags\guatemala.png" />
+    <Content Include="Images\Flags\guinea.png" />
+    <Content Include="Images\Flags\guineabissau.png" />
+    <Content Include="Images\Flags\guyana.png" />
+    <Content Include="Images\Flags\haiti.png" />
+    <Content Include="Images\Flags\holy_see.png" />
+    <Content Include="Images\Flags\honduras.png" />
+    <Content Include="Images\Flags\hong_kong.png" />
+    <Content Include="Images\Flags\hungary.png" />
+    <Content Include="Images\Flags\iceland.png" />
+    <Content Include="Images\Flags\india.png" />
+    <Content Include="Images\Flags\indonesia.png" />
+    <Content Include="Images\Flags\iran.png" />
+    <Content Include="Images\Flags\iraq.png" />
+    <Content Include="Images\Flags\ireland.png" />
+    <Content Include="Images\Flags\israel.png" />
+    <Content Include="Images\Flags\italy.png" />
+    <Content Include="Images\Flags\ivorycoast.png" />
+    <Content Include="Images\Flags\jamaica.png" />
+    <Content Include="Images\Flags\japan.png" />
+    <Content Include="Images\Flags\jordan.png" />
+    <Content Include="Images\Flags\kazakhstan.png" />
+    <Content Include="Images\Flags\kenya.png" />
+    <Content Include="Images\Flags\kiribati.png" />
+    <Content Include="Images\Flags\kuwait.png" />
+    <Content Include="Images\Flags\kyrgyzstan.png" />
+    <Content Include="Images\Flags\laos.png" />
+    <Content Include="Images\Flags\latvia.png" />
+    <Content Include="Images\Flags\lebanon.png" />
+    <Content Include="Images\Flags\lesotho.png" />
+    <Content Include="Images\Flags\liberia.png" />
+    <Content Include="Images\Flags\libya.png" />
+    <Content Include="Images\Flags\liechtenstein.png" />
+    <Content Include="Images\Flags\lithuania.png" />
+    <Content Include="Images\Flags\luxembourg.png" />
+    <Content Include="Images\Flags\macau.png" />
+    <Content Include="Images\Flags\macedonia.png" />
+    <Content Include="Images\Flags\madagascar.png" />
+    <Content Include="Images\Flags\malawi.png" />
+    <Content Include="Images\Flags\malaysia.png" />
+    <Content Include="Images\Flags\maldives.png" />
+    <Content Include="Images\Flags\mali.png" />
+    <Content Include="Images\Flags\malta.png" />
+    <Content Include="Images\Flags\marshall_islands.png" />
+    <Content Include="Images\Flags\martinique.png" />
+    <Content Include="Images\Flags\mauritania.png" />
+    <Content Include="Images\Flags\mauritius.png" />
+    <Content Include="Images\Flags\mexico.png" />
+    <Content Include="Images\Flags\micronesia.png" />
+    <Content Include="Images\Flags\moldova.png" />
+    <Content Include="Images\Flags\monaco.png" />
+    <Content Include="Images\Flags\mongolia.png" />
+    <Content Include="Images\Flags\montserrat.png" />
+    <Content Include="Images\Flags\mozambique.png" />
+    <Content Include="Images\Flags\myanmar.png" />
+    <Content Include="Images\Flags\namibia.png" />
+    <Content Include="Images\Flags\nauru.png" />
+    <Content Include="Images\Flags\nepal.png" />
+    <Content Include="Images\Flags\netherlands.png" />
+    <Content Include="Images\Flags\netherlands_Antilles.png" />
+    <Content Include="Images\Flags\newzealand.png" />
+    <Content Include="Images\Flags\new_caledonia.png" />
+    <Content Include="Images\Flags\nicaragua.png" />
+    <Content Include="Images\Flags\niger.png" />
+    <Content Include="Images\Flags\nigeria.png" />
+    <Content Include="Images\Flags\norfolk_island.png" />
+    <Content Include="Images\Flags\nortern_mariana_islands.png" />
+    <Content Include="Images\Flags\north_korea.png" />
+    <Content Include="Images\Flags\norway.png" />
+    <Content Include="Images\Flags\oman.png" />
+    <Content Include="Images\Flags\pakistan.png" />
+    <Content Include="Images\Flags\palau.png" />
+    <Content Include="Images\Flags\palestine.png" />
+    <Content Include="Images\Flags\panama.png" />
+    <Content Include="Images\Flags\papuanewguinea.png" />
+    <Content Include="Images\Flags\paraguay.png" />
+    <Content Include="Images\Flags\peru.png" />
+    <Content Include="Images\Flags\philippines.png" />
+    <Content Include="Images\Flags\poland.png" />
+    <Content Include="Images\Flags\portugal.png" />
+    <Content Include="Images\Flags\puertorico.png" />
+    <Content Include="Images\Flags\qatar.png" />
+    <Content Include="Images\Flags\romania.png" />
+    <Content Include="Images\Flags\russia.png" />
+    <Content Include="Images\Flags\rwanda.png" />
+    <Content Include="Images\Flags\Saba.png" />
+    <Content Include="Images\Flags\san_marino.png" />
+    <Content Include="Images\Flags\sao_tome.png" />
+    <Content Include="Images\Flags\saudiarabia.png" />
+    <Content Include="Images\Flags\scotland.png" />
+    <Content Include="Images\Flags\senegal.png" />
+    <Content Include="Images\Flags\seychelles.png" />
+    <Content Include="Images\Flags\sierraleone.png" />
+    <Content Include="Images\Flags\singapore.png" />
+    <Content Include="Images\Flags\Sint_Eustatius.png" />
+    <Content Include="Images\Flags\slovakia.png" />
+    <Content Include="Images\Flags\slovenia.png" />
+    <Content Include="Images\Flags\solomon_islands.png" />
+    <Content Include="Images\Flags\somalia.png" />
+    <Content Include="Images\Flags\southafrica.png" />
+    <Content Include="Images\Flags\south_korea.png" />
+    <Content Include="Images\Flags\south_sudan.png" />
+    <Content Include="Images\Flags\spain.png" />
+    <Content Include="Images\Flags\srilanka.png" />
+    <Content Include="Images\Flags\stkitts_nevis.png" />
+    <Content Include="Images\Flags\st_lucia.png" />
+    <Content Include="Images\Flags\st_pierre_and_miquelon.png" />
+    <Content Include="Images\Flags\sudan.png" />
+    <Content Include="Images\Flags\suriname.png" />
+    <Content Include="Images\Flags\swaziland.png" />
+    <Content Include="Images\Flags\sweden.png" />
+    <Content Include="Images\Flags\switzerland.png" />
+    <Content Include="Images\Flags\syria.png" />
+    <Content Include="Images\Flags\taiwan.png" />
+    <Content Include="Images\Flags\tajikistan.png" />
+    <Content Include="Images\Flags\tanzania.png" />
+    <Content Include="Images\Flags\thailand.png" />
+    <Content Include="Images\Flags\togo.png" />
+    <Content Include="Images\Flags\tonga.png" />
+    <Content Include="Images\Flags\trinidadandtobago.png" />
+    <Content Include="Images\Flags\tunisia.png" />
+    <Content Include="Images\Flags\turkey.png" />
+    <Content Include="Images\Flags\turkmenistan.png" />
+    <Content Include="Images\Flags\turks_and_caicos.png" />
+    <Content Include="Images\Flags\tuvala.png" />
+    <Content Include="Images\Flags\uae.png" />
+    <Content Include="Images\Flags\uganda.png" />
+    <Content Include="Images\Flags\uk.png" />
+    <Content Include="Images\Flags\ukraine.png" />
+    <Content Include="Images\Flags\uruguay.png" />
+    <Content Include="Images\Flags\usa.png" />
+    <Content Include="Images\Flags\us_minor_outlying_isls.png" />
+    <Content Include="Images\Flags\uzbekistan.png" />
+    <Content Include="Images\Flags\vanuatu.png" />
+    <Content Include="Images\Flags\venezuela.png" />
+    <Content Include="Images\Flags\vietnam.png" />
+    <Content Include="Images\Flags\virgin_islands.png" />
+    <Content Include="Images\Flags\virgin_islands_british.png" />
+    <Content Include="Images\Flags\wales.png" />
+    <Content Include="Images\Flags\western_samoa.png" />
+    <Content Include="Images\Flags\yemen.png" />
+    <Content Include="Images\Flags\yugoslavia.png" />
+    <Content Include="Images\Flags\zambia.png" />
+    <Content Include="Images\Flags\zimbabwe.png" />
+    <Content Include="Images\Icons\Access.bmp" />
+    <Content Include="Images\Icons\Add.ico" />
+    <Content Include="Images\Icons\AddLayer.ico" />
+    <Content Include="Images\Icons\Admin.ico" />
+    <Content Include="Images\Icons\AIR.ico" />
+    <Content Include="Images\Icons\Alpha.ico" />
+    <Content Include="Images\Icons\AnalystChecklist.ico" />
+    <Content Include="Images\Icons\Ant 01.ico" />
+    <Content Include="Images\Icons\Ant 02.ico" />
+    <Content Include="Images\Icons\Approve.ico" />
+    <Content Include="Images\Icons\ARPS_Error.ico" />
+    <Content Include="Images\Icons\ARPS_Refresh.ico" />
+    <Content Include="Images\Icons\ARW05LT.ICO" />
+    <Content Include="Images\Icons\ARW06DN.ICO" />
+    <Content Include="Images\Icons\ARW06LT.ICO" />
+    <Content Include="Images\Icons\ARW06RT.ICO" />
+    <Content Include="Images\Icons\ARW06UP.ICO" />
+    <Content Include="Images\Icons\ARW07DN.ICO" />
+    <Content Include="Images\Icons\ARW07LT.ICO" />
+    <Content Include="Images\Icons\ARW07RT.ICO" />
+    <Content Include="Images\Icons\ARW07UP.ICO" />
+    <Content Include="Images\Icons\ARW08DN.ICO" />
+    <Content Include="Images\Icons\ARW08LT.ICO" />
+    <Content Include="Images\Icons\ARW08RT.ICO" />
+    <Content Include="Images\Icons\ARW08UP.ICO" />
+    <Content Include="Images\Icons\attach.ico" />
+    <Content Include="Images\Icons\AttachedDB.ico" />
+    <Content Include="Images\Icons\AutoFitFreq.ico" />
+    <Content Include="Images\Icons\AutoFitSev.ico" />
+    <Content Include="Images\Icons\Average.ico" />
+    <Content Include="Images\Icons\Back.png" />
+    <Content Include="Images\Icons\BarChart.bmp" />
+    <Content Include="Images\Icons\Biohazard.ico" />
+    <Content Include="Images\Icons\Biological.ico" />
+    <Content Include="Images\Icons\Blank.ico" />
+    <Content Include="Images\Icons\Broker.ico" />
+    <Content Include="Images\Icons\BugZilla.ico" />
+    <Content Include="Images\Icons\Bumblebee.ico" />
+    <Content Include="Images\Icons\Calc.ico" />
+    <Content Include="Images\Icons\calendar.ico" />
+    <Content Include="Images\Icons\Cancel.ico" />
+    <Content Include="Images\Icons\CartesianChart.bmp" />
+    <Content Include="Images\Icons\Cash.ico" />
+    <Content Include="Images\Icons\Catrader.ico" />
+    <Content Include="Images\Icons\Cedant.ico" />
+    <Content Include="Images\Icons\Ceded.ico" />
+    <Content Include="Images\Icons\ChangesBarChart.bmp" />
+    <Content Include="Images\Icons\ChangesLineChart.bmp" />
+    <Content Include="Images\Icons\Check.ico" />
+    <Content Include="Images\Icons\Checkbook.ico" />
+    <Content Include="Images\Icons\Chemical.ico" />
+    <Content Include="Images\Icons\Clasic2.ico" />
+    <Content Include="Images\Icons\Clasic2_Net.ico" />
+    <Content Include="Images\Icons\Clasic2_text.ico" />
+    <Content Include="Images\Icons\Clock.ico" />
+    <Content Include="Images\Icons\CLOCK02.ICO" />
+    <Content Include="Images\Icons\CLOSE.ICO" />
+    <Content Include="Images\Icons\closedfolder.ico" />
+    <Content Include="Images\Icons\Cloud.ico" />
+    <Content Include="Images\Icons\Company.ico" />
+    <Content Include="Images\Icons\ConstantEntity.bmp" />
+    <Content Include="Images\Icons\ContextMenu.ico" />
+    <Content Include="Images\Icons\ContextMenu_Disabled.ico" />
+    <Content Include="Images\Icons\ContractType.ico" />
+    <Content Include="Images\Icons\Copy.ico" />
+    <Content Include="Images\Icons\Copy.png" />
+    <Content Include="Images\Icons\Currency.ico" />
+    <Content Include="Images\Icons\Currency2.ico" />
+    <Content Include="Images\Icons\Currency3.ico" />
+    <Content Include="Images\Icons\Currency_Blue.ico" />
+    <Content Include="Images\Icons\Currency_Green.ico" />
+    <Content Include="Images\Icons\Currency_Red.ico" />
+    <Content Include="Images\Icons\Cut.ico" />
+    <Content Include="Images\Icons\Cut.png" />
+    <Content Include="Images\Icons\DB.ico" />
+    <Content Include="Images\Icons\Decline.ico" />
+    <Content Include="Images\Icons\delete.ico" />
+    <Content Include="Images\Icons\Delete1.ico" />
+    <Content Include="Images\Icons\Delete16.png" />
+    <Content Include="Images\Icons\Delete1_Dis.ico" />
+    <Content Include="Images\Icons\delete_Dis.ico" />
+    <Content Include="Images\Icons\DetachedDB.ico" />
+    <Content Include="Images\Icons\DevFactors.ico" />
+    <Content Include="Images\Icons\Direct.bmp" />
+    <Content Include="Images\Icons\DirectLR.ico" />
+    <Content Include="Images\Icons\disconnect.gif" />
+    <Content Include="Images\Icons\DivisionGroup.ico" />
+    <Content Include="Images\Icons\dollar.ico" />
+    <Content Include="Images\Icons\domain.gif" />
+    <Content Include="Images\Icons\Dynamite.ico" />
+    <Content Include="Images\Icons\DYNASET.ICO" />
+    <Content Include="Images\Icons\EARTH.ICO" />
+    <Content Include="Images\Icons\EDIT.ICO" />
+    <Content Include="Images\Icons\Empty.png" />
+    <Content Include="Images\Icons\EMS.ico" />
+    <Content Include="Images\Icons\EQE.ico" />
+    <Content Include="Images\Icons\Error.ico" />
+    <Content Include="Images\Icons\Excel.bmp" />
+    <Content Include="Images\Icons\Excel.ico" />
+    <Content Include="Images\Icons\Exit.ico" />
+    <Content Include="Images\Icons\Exposure.ico" />
+    <Content Include="Images\Icons\find.ico" />
+    <Content Include="Images\Icons\Fire.ico" />
+    <Content Include="Images\Icons\Fire1.ico" />
+    <Content Include="Images\Icons\Forward.png" />
+    <Content Include="Images\Icons\FrequencyValue.ico" />
+    <Content Include="Images\Icons\Genius.ico" />
+    <Content Include="Images\Icons\google_earth.ico" />
+    <Content Include="Images\Icons\Grid.bmp" />
+    <Content Include="Images\Icons\High.png" />
+    <Content Include="Images\Icons\history.ico" />
+    <Content Include="Images\Icons\Home.ico" />
+    <Content Include="Images\Icons\Image.ico" />
+    <Content Include="Images\Icons\Index.ico" />
+    <Content Include="Images\Icons\Info.ico" />
+    <Content Include="Images\Icons\Information.ico" />
+    <Content Include="Images\Icons\Info_dis.ico" />
+    <Content Include="Images\Icons\InsertLayer.ico" />
+    <Content Include="Images\Icons\Iris.ico" />
+    <Content Include="Images\Icons\Iris1.ico" />
+    <Content Include="Images\Icons\it_search0.gif" />
+    <Content Include="Images\Icons\i_print.gif" />
+    <Content Include="Images\Icons\KatRisk.ico" />
+    <Content Include="Images\Icons\Lady Bug 03.ico" />
+    <Content Include="Images\Icons\Layer.ico" />
+    <Content Include="Images\Icons\Layer_Dis.ico" />
+    <Content Include="Images\Icons\Lightning.ico" />
+    <Content Include="Images\Icons\LimProfile.ico" />
+    <Content Include="Images\Icons\LimProfileMain.ico" />
+    <Content Include="Images\Icons\LinearGrowth.ico" />
+    <Content Include="Images\Icons\LineGraph.ico" />
+    <Content Include="Images\Icons\Link.png" />
+    <Content Include="Images\Icons\LogGraph.bmp" />
+    <Content Include="Images\Icons\logout.gif" />
+    <Content Include="Images\Icons\Lookup.bmp" />
+    <Content Include="Images\Icons\mail.ico" />
+    <Content Include="Images\Icons\MAIL03.ICO" />
+    <Content Include="Images\Icons\mail_green.ico" />
+    <Content Include="Images\Icons\mail_red.ico" />
+    <Content Include="Images\Icons\mail_yellow.ico" />
+    <Content Include="Images\Icons\MainInfo.ico" />
+    <Content Include="Images\Icons\marine.ico" />
+    <Content Include="Images\Icons\Medium.png" />
+    <Content Include="Images\Icons\message.gif" />
+    <Content Include="Images\Icons\Model.ico" />
+    <Content Include="Images\Icons\ModelInfo.ico" />
+    <Content Include="Images\Icons\Money.ico" />
+    <Content Include="Images\Icons\Move.ico" />
+    <Content Include="Images\Icons\New.ico" />
+    <Content Include="Images\Icons\NewFolder.ico" />
+    <Content Include="Images\Icons\Note.ico" />
+    <Content Include="Images\Icons\Notepad.ico" />
+    <Content Include="Images\Icons\Note_Small.ico" />
+    <Content Include="Images\Icons\Note_Text.ico" />
+    <Content Include="Images\Icons\No_Refresh.ico" />
+    <Content Include="Images\Icons\Nuclear.ico" />
+    <Content Include="Images\Icons\OK.ico" />
+    <Content Include="Images\Icons\Open.ico" />
+    <Content Include="Images\Icons\openfolder.ico" />
+    <Content Include="Images\Icons\Outlook.bmp" />
+    <Content Include="Images\Icons\PadLock.ico" />
+    <Content Include="Images\Icons\page16.png" />
+    <Content Include="Images\Icons\Paste Function.ico" />
+    <Content Include="Images\Icons\Paste.ico" />
+    <Content Include="Images\Icons\PayoutFactors.ico" />
+    <Content Include="Images\Icons\PDF.ico" />
+    <Content Include="Images\Icons\PeerReview.bmp" />
+    <Content Include="Images\Icons\PeerReviewer.ico" />
+    <Content Include="Images\Icons\PeerReviewer_No.ico" />
+    <Content Include="Images\Icons\PeerReviewer_Unk.ico" />
+    <Content Include="Images\Icons\PeerReviewer_Yes.ico" />
+    <Content Include="Images\Icons\Peril.ICO" />
+    <Content Include="Images\Icons\person.ico" />
+    <Content Include="Images\Icons\PieChart.bmp" />
+    <Content Include="Images\Icons\Plane.ico" />
+    <Content Include="Images\Icons\POINT02.ICO" />
+    <Content Include="Images\Icons\PolicyExport.ico" />
+    <Content Include="Images\Icons\Portal.ico" />
+    <Content Include="Images\Icons\Portfolio.ico" />
+    <Content Include="Images\Icons\PortfolioImpact.ico" />
+    <Content Include="Images\Icons\PredefDist.ico" />
+    <Content Include="Images\Icons\Print.ico" />
+    <Content Include="Images\Icons\Print_Small.ico" />
+    <Content Include="Images\Icons\ProductGroup.ICO" />
+    <Content Include="Images\Icons\Properties.png" />
+    <Content Include="Images\Icons\PROPS.ICO" />
+    <Content Include="Images\Icons\Provider.ico" />
+    <Content Include="Images\Icons\PTM.ico" />
+    <Content Include="Images\Icons\Question.ico" />
+    <Content Include="Images\Icons\Queue.ico" />
+    <Content Include="Images\Icons\Radiological.ico" />
+    <Content Include="Images\Icons\RDP.bmp" />
+    <Content Include="Images\Icons\ReAttach.ico" />
+    <Content Include="Images\Icons\Refresh.ico" />
+    <Content Include="Images\Icons\Refresh1.Ico" />
+    <Content Include="Images\Icons\refresh16.png" />
+    <Content Include="Images\Icons\Refresh2.Ico" />
+    <Content Include="Images\Icons\Renew.ico" />
+    <Content Include="Images\Icons\Reports.ico" />
+    <Content Include="Images\Icons\Retro.ico" />
+    <Content Include="Images\Icons\RMS.GIF" />
+    <Content Include="Images\Icons\RMS.ico" />
+    <Content Include="Images\Icons\Save.ico" />
+    <Content Include="Images\Icons\SaveAs.ico" />
+    <Content Include="Images\Icons\Search.ico" />
+    <Content Include="Images\Icons\security.ico" />
+    <Content Include="Images\Icons\Select.ico" />
+    <Content Include="Images\Icons\Server.ico" />
+    <Content Include="Images\Icons\Server_Active.ico" />
+    <Content Include="Images\Icons\Server_Offline.ico" />
+    <Content Include="Images\Icons\Server_Online.ico" />
+    <Content Include="Images\Icons\SevFreq.ico" />
+    <Content Include="Images\Icons\SignOff.ico" />
+    <Content Include="Images\Icons\SMF.Ico" />
+    <Content Include="Images\Icons\SortAsc.ico" />
+    <Content Include="Images\Icons\SortDesc.ico" />
+    <Content Include="Images\Icons\Stop16.png" />
+    <Content Include="Images\Icons\Summary.ico" />
+    <Content Include="Images\Icons\swap.ico" />
+    <Content Include="Images\Icons\SwapVertical.ico" />
+    <Content Include="Images\Icons\SwapXY.ico" />
+    <Content Include="Images\Icons\Task Report.jpg" />
+    <Content Include="Images\Icons\TaskReport.ico" />
+    <Content Include="Images\Icons\TBLRS.ICO" />
+    <Content Include="Images\Icons\Territory.ico" />
+    <Content Include="Images\Icons\territory1.ico" />
+    <Content Include="Images\Icons\TerritoryAdd.ico" />
+    <Content Include="Images\Icons\Terror.ico" />
+    <Content Include="Images\Icons\Text.bmp" />
+    <Content Include="Images\Icons\Text.ico" />
+    <Content Include="Images\Icons\TextFile.ico" />
+    <Content Include="Images\Icons\TextFileNet.ico" />
+    <Content Include="Images\Icons\Text_Bad.ico" />
+    <Content Include="Images\Icons\ToggleLog.ico" />
+    <Content Include="Images\Icons\Tools 01.ico" />
+    <Content Include="Images\Icons\Tools 02.ico" />
+    <Content Include="Images\Icons\Tools.ico" />
+    <Content Include="Images\Icons\Tools1.ico" />
+    <Content Include="Images\Icons\Touchstone.ico" />
+    <Content Include="Images\Icons\TouchstoneNet.ico" />
+    <Content Include="Images\Icons\Trace Dependents.ico" />
+    <Content Include="Images\Icons\tsadmin.ico" />
+    <Content Include="Images\Icons\Urgent.png" />
+    <Content Include="Images\Icons\User.ico" />
+    <Content Include="Images\Icons\Users.ico" />
+    <Content Include="Images\Icons\user_NA.ico" />
+    <Content Include="Images\Icons\Warning.ico" />
+    <Content Include="Images\Icons\WeightedAverage.ico" />
+    <Content Include="Images\Icons\Weights.ico" />
+    <Content Include="Images\Icons\Weights1.ico" />
+    <Content Include="Images\Icons\Word.ico" />
+    <Content Include="Images\Icons\Workstation.gif" />
+    <Content Include="Images\Icons\World.ico" />
+    <Content Include="Images\Icons\XML.bmp" />
+    <Content Include="Images\Icons\Xuber.ico" />
+    <Content Include="Images\Icons\XuberAdd.ico" />
+    <Content Include="Images\Icons\Zoom.cur" />
+    <Content Include="Images\Icons\Zoom.Ico" />
+    <Content Include="Images\Icons\ZoomOut.Ico" />
+    <Content Include="Images\Pics\Group.bmp" />
+    <Content Include="Images\Pics\Sort.bmp" />
+    <Content Include="Images\Pyramid16.ico" />
+    <Content Include="Images\Pyramid32.ico" />
+    <Content Include="Images\Robot-Icon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>
